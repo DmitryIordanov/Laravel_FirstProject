@@ -14,7 +14,7 @@
                 @foreach($posts as $post)
                     <tr>
                         <th scope="row">{{ $post->id }}</th>
-                        <td>{{ $post->title }}</td>
+                        <td><a href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a></td>
                         <td>{{ $post->likes }}</td>
                         <td>{{ $post->is_published }}</td>
                     </tr>
