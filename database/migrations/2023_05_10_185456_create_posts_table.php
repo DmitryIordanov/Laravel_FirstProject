@@ -18,15 +18,11 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->string('image')->nullable();
-            $table->unsignedBigInteger('likes')->nullable();
+            $table->unsignedBigInteger('likes')->default(0);
             $table->boolean('is_published')->default(1);
             $table->timestamps();
-
             $table->softDeletes();
-
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->index('category_id', 'post_category_idx');
-            $table->foreign('category_id', 'post_category_fk')->on('categories')->references('id');
+            $table->unsignedBigInteger('category_id');
         });
     }
 

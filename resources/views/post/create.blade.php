@@ -67,7 +67,7 @@
             <div class="row mb-3">
                 <label for="inputPassword3" class="col-sm-2 col-form-label">Tags</label>
                 <div class="col-sm-10">
-                    <select class="form-select" multiple aria-label="multiple select example" name="tags[]">
+                    <select class="form-select" multiple aria-label="multiple select example" name="tags">
                         @foreach($tags as $tag)
                             <option value="{{ $tag->id }}">{{ $tag->title }}</option>
                         @endforeach
