@@ -1,7 +1,12 @@
-@extends('templates.main')
+@extends('templates.admin')
+
 @section('content')
-    <div style="margin-top: 30px; margin-bottom: 30px;">
-        <h1 style="text-align: center">Create post</h1>
+
+    <div style="display: none">
+        {{ $titlePage = 'Create posts' }}
+    </div>
+
+    <div class="createForm">
         <form action="{{ route('post.store') }}" method="post">
             @csrf
             <div class="row mb-3">
@@ -10,7 +15,7 @@
                     <input type="text" name="title" class="form-control" id="inputEmail3" value="{{ old('title') }}">
                 </div>
                 @error('title')
-                    <p class="text-danger">{{ $message }}</p>
+                <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="row mb-3">
@@ -19,7 +24,7 @@
                     <textarea type="text" name="content" class="form-control" id="inputPassword3">{{ old('content') }}</textarea>
                 </div>
                 @error('content')
-                    <p class="text-danger">{{ $message }}</p>
+                <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="row mb-3">
@@ -28,7 +33,7 @@
                     <input type="text" name="image" class="form-control" id="inputPassword3" value="{{ old('image') }}">
                 </div>
                 @error('image')
-                    <p class="text-danger">{{ $message }}</p>
+                <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="row mb-3">
@@ -43,7 +48,7 @@
                     <input type="number" name="is_published" class="form-control" id="inputPassword3" value="{{ old('is_published') }}">
                 </div>
                 @error('is_published')
-                    <p class="text-danger">{{ $message }}</p>
+                <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="row mb-3">
@@ -61,7 +66,7 @@
                     </select>
                 </div>
                 @error('category_id')
-                    <p class="text-danger">{{ $message }}</p>
+                <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="row mb-3">
@@ -74,10 +79,11 @@
                     </select>
                 </div>
                 @error('tags')
-                    <p class="text-danger">{{ $message }}</p>
+                <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
     </div>
+
 @endsection

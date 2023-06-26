@@ -1,7 +1,12 @@
-@extends('templates.main')
+@extends('templates.admin')
+
 @section('content')
-    <div style="margin-top: 30px; margin-bottom: 30px;">
-        <h1 style="text-align: center">Edit post</h1>
+
+    <div style="display: none">
+        {{ $titlePage = 'Edit posts' }}
+    </div>
+
+    <div class="editForm">
         <form action="{{ route('post.update', $post->id) }}" method="post">
             @csrf
             @method('patch')

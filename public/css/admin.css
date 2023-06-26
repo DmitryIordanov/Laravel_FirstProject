@@ -1,0 +1,21 @@
+.createForm, .editForm{
+    margin: 30px 30px;
+}
+.createForm label, .editForm label{
+    flex: 0 0 10%;
+}
+.createForm select, .editForm select{
+    width: 200px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: 1px solid #D4D4D4;
+    outline: none;
+}
+@media screen and (min-width: 1920px){
+    .createForm, .editForm{
+        display: flex;
+        flex-direction: column;
+        width: 1500px;
+        margin: 30px auto;
+    }
+}

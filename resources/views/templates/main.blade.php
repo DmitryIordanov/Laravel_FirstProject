@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/adminPanel.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="https://laracasts.com/images/path/laravel-path-achievement-unlocked.png">
     <title>Laravel</title>
-    <style>html,body{height:100%;}.wrapper{min-height:100%;display:flex;flex-direction:column;}.main{flex:1 1 auto;}</style>
 </head>
 <body>
+    @include('includes/admin/adminPanel')
     <div class="wrapper">
         <header class="header">
             <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background: #F0F3FF;">
@@ -21,9 +23,6 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('post.index') }}">Post</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('post.create') }}">Create</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('about.index') }}">About</a>

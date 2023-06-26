@@ -13,13 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', "MainController@index")->name('main.index');
-Route::get('/posts', "PostController@index")->name('post.index');
-Route::get('/about', "AboutController@index")->name('about.index');
+Route::group(['namespace' => 'Post'], function (){
+    Route::get('/posts', "IndexController")->name('post.index');
+    Route::post('/posts', "StoreController")->name('post.store');
+    Route::post('/search', "SearchController")->name('post.search');
+    Route::get('/posts/{post}', "ShowController")->name('post.show');
+    Route::patch('/posts/{post}', "UpdateController")->name('post.update');
+    Route::delete('/posts/{post}', "DeleteController")->name('post.delete');
+});
 
-Route::get('/posts/create', "PostController@create")->name('post.create');
-Route::post('/posts', "PostController@store")->name('post.store');
-Route::get('/posts/{post}', "PostController@show")->name('post.show');
-Route::get('/posts/{post}/edit', "PostController@edit")->name('post.edit');
-Route::patch('/posts/{post}', "PostController@update")->name('post.update');
-Route::delete('/posts/{post}', "PostController@destroy")->name('post.delete');
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function (){
+    Route::group(['namespace' => 'Post'], function (){
+        Route::get('/post', 'IndexController')->name('admin.post.index');
+        Route::get('/create', 'CreateController')->name('admin.post.create');
+        Route::get('/trash', 'TrashController')->name('admin.post.trash');
+        Route::post('/search', "SearchController")->name('admin.post.search');
+        Route::get('/restore/{res}', 'RestoreController')->name('admin.post.restore');
+        Route::get('/posts/{post}/edit', "EditController")->name('admin.post.edit');
+    });
+});
+
+Route::get('/', "MainController@index")->name('main.index');
+Route::get('/about', "AboutController@index")->name('about.index');
