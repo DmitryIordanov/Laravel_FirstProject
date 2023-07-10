@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Requests\Post\StoreRequest;
+use App\Http\Resources\Post\PostResource;
 
 class StoreController extends BaseController
 {

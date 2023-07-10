@@ -3,12 +3,12 @@
     <div>
         <ul>
             <li>
-                <a href="http://127.0.0.1:8000/admin/post">
+                <a href="{{ route('admin.dashboard.index') }}">
                     <img class="logo" src="{{ asset('/dist/img/AdminLTELogo.png') }}" alt="">
                 </a>
             </li>
             <li>
-                <a href="http://127.0.0.1:8000/admin/post">
+                <a href="{{ route('admin.dashboard.index') }}">
                     <span>Admin Panel</span>
                 </a>
             </li>

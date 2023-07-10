@@ -7,14 +7,20 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/adminPanel.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="shortcut icon" href="https://laracasts.com/images/path/laravel-path-achievement-unlocked.png">
     <title>Laravel</title>
 </head>
 <body>
-    @include('includes/admin/adminPanel')
+
+    @can('view', auth()->user())
+        @include('includes/admin/adminPanel')
+    @endcan
+
     <div class="wrapper">
         <header class="header">
-            <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background: #F0F3FF;">
+            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
@@ -27,6 +33,48 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('about.index') }}">About</a>
                             </li>
+                        </ul>
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ms-auto">
+                            <!-- Authentication Links -->
+                            @guest
+                                @if (Route::has('login'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    </li>
+                                @endif
+
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    </li>
+                                @endif
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }}
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="width: 200px;">
+                                        <div style="display: flex;padding: 0 16px; align-items: center;">
+                                            <img style="align-items: center;" width="50" height="50" src="https://www.freeiconspng.com/uploads/person-icon-blue-18.png" alt="">
+                                            <div style="padding-left: 5px;">
+                                                <span>Name: {{ Auth::user()->name }}</span>
+                                                <span>Status: {{ Auth::user()->role }}</span>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endguest
                         </ul>
                     </div>
                 </div>

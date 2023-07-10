@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\Filterable;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,6 +16,10 @@ class Post extends Model
 
     protected $table = 'posts';
     protected $guarded = [];
+
+    protected function serializeDate(DateTimeInterface $date){
+        return $date->format('Y-m-d H:i:s');
+    }
 
     public function category(){
         return $this->belongsTo(Category::class);

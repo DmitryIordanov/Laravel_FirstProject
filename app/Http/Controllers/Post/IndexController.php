@@ -13,7 +13,8 @@ class IndexController extends BaseController
 
         $filter = app()->make(PostFilter::class, ['queryParams' => array_filter($data)]);
 
-        $posts = Post::filter($filter)->paginate(10);
+        $posts = Post::orderBy('created_at', 'desc')->filter($filter)->paginate(6);
+
         return view('post.index', compact('posts'));
     }
 }

@@ -14,6 +14,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Content</th>
                 <th scope="col">Likes</th>
+                <th scope="col">Created</th>
                 <th scope="col">Edit post</th>
             </tr>
             </thead>
@@ -21,9 +22,10 @@
             @foreach($posts as $post)
                 <tr>
                     <th scope="row">{{ $post->id }}</th>
-                    <td><a href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a></td>
-                    <td>{{ Illuminate\Support\Str::limit($post->content, 175) }}</td>
+                    <td style="max-width: 250px"><a href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a></td>
+                    <td>{{ Illuminate\Support\Str::limit($post->content, 150) }}</td>
                     <td>{{ $post->likes }}</td>
+                    <td>{{ $post->created_at }}</td>
                     <td>
                         <div style="display: flex">
                             <form action="{{ route('post.delete', $post->id) }}" method="post">

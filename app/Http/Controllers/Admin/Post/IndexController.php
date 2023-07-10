@@ -14,7 +14,7 @@ class IndexController extends Controller
 
         $filter = app()->make(PostFilter::class, ['queryParams' => array_filter($data)]);
 
-        $posts = Post::filter($filter)->paginate(15);
+        $posts = Post::orderBy('created_at', 'desc')->filter($filter)->paginate(15);
 
         return view('admin.post.index', compact('posts'));
     }
